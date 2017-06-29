@@ -4,6 +4,12 @@
 </header>
   
 <main>
+  <form class="todo-form" (ngSubmit)="create(); todoForm.reset();" #todoForm="ngForm">
+    <input type="text" name="title" [(ngModel)]="newTodoTile" placeholder="Что нужно сделать?" 
+    required>
+    <button type="submit" [disabled]="todoForm.form.invalid">Add</button>
+  </form>
+
   <section class="todo-list" *ngIf="todos.length">
     <div class="todo-item" *ngFor="let todo of todos"[class.completed]="todo.completed">
       <button class="checkbox icon" (click)="toggle(todo)">
